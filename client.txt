@@ -1,0 +1,48 @@
+Project Exp
+************
+My Name is Muhammed Nisar PK.
+I am an Eng graduate in Compiuter science.
+Currently working as a senoir software engineer with Rapidvalue.
+I have 6.3 years of experience in Software industry.
+
+I have good skill in both manual and autonation testing.
+
+The previouse project I worked is Riverbed Steelhead, it is a wan opti device.
+In this project i used jenkins,testrail,git,bugzilla and test automation tool GRiTS.
+Here we used to perform FIT and PR tests.
+Fit is performed to ensure the quality of Feature integration test 
+and PR is used to perform point release regression.
+On test failure we used to triagge issues and fix issues to complete the test run,
+we used to report bugs when test fails because of product issues.
+1.5 years of automation.
+
+The other major project was Shippalm Synergy, it is a ship operation management application.
+I have worked with 2 major modules of this project , Crewmanagement and Portage bill .
+In this project i used Sele selenium hybrid framework using java and testng,TFS,SVN and Bugzilla.
+Here we used selenium to perform only regression test.
+2.5 years of automation.
+
+my project exp include both web and nw applications.
+I am an ISTQB  Foundation level International Software Testing Qualifications Board certifie tester
+
+
+
+
+
+Most challenged issue:
+
+In riverbed project, there was an issue happened because of gitlab privatisation.
+It is observed when suddenly all the Integration tests were getting failed.
+I used to triage the issue as per the usual triaging steps like test environment status check, reinstall the application, network connectivity etc. but still, the issue not got resolved.
+Later I decided to check the test from machine to machine with the help of test log and found that one config file content downloaded from git lab was not properly updated and it shows redirection to gitlab login page. I inferred that this is because of permission issue for this Jenkins user in gitlab and found that it is because of the gitlab privatisation happened in previouse week.suggested customer to enable a private token for this user for the time being and resolved this issue.
+
+In our test environment we didn’t have much links used in our status emails.
+
+In selenium there was a practice followed in our suites to verify the navigated page.
+The practice was to call a keyword to verify the presence of element from data controller immediately after calling the navigation keyword. By this whenever the navigation success and element not found, the navigation keywords was shown as pass in report. 
+
+ 
+
+
+
+
