@@ -44,11 +44,14 @@ The practice was to call a keyword to verify the presence of element from data c
  things before start automation project. approach to a new autmation project. best practices for automation:
  
  The test automation is converting our manual tests into test scripts.
-1. so here we need to consider the project environment, tools and technology we are used in the project supported by the automation tool.
-2.budget and availability of resources within the budget.
-3.availability of support to perform test using the tool.
-4.support with reporting tools/ integration with test management tool
-5.support with continuouse integration tool.
+1. so here we need to consider the project environment, tools and technology we are used in the project supported by the automation tool(feasibility study).and select automation tool.
+2.budget and availability of resources within the budget. selenium is open source most cost effective when compare to other available tools.
+3.availability of support to perform test using the tool.Selenium has more communities online to support.
+4.support with reporting tools/ integration with test management tool.  
+5.support with continuouse integration tool. Selenium projects can be integrated with tools like jenkins.
+6.The application should be stable at least for 2,3 modules and manual test should performed before.
+7.choose framework with maximum reusable components, 
+8.prepare atleast 2 POC proof of concept.
 
 steps if build didnt met customer expectation:
 
@@ -69,7 +72,9 @@ but Making decisions can take longer bcause of multiple opinions
 emlpoy sit back and not do anything will demotivate the team
 
 
-handling different environment for diffent tests like qa,uat:
+handling different environment for diffent tests like qa,uat: in case of selenium, each envirmnet will be different with diffrent servers,so the app url ,username and password ,browser,controller sheet/suit based on test will be different 
+The code remins same but we can customize config part for this.
+
 Tool used for CI -jenkins: 
 java -jar jenkins.war
 (jenkins_url)/safeRestart - Allows all running jobs to complete. New jobs will remain in the queue to run after the restart is complete.
@@ -86,5 +91,22 @@ git reset –soft HEAD~1
 
 
 Clean up:
+logout 
+disconnect all opened connections
+disconnect from excel file reader
+close driver
+quit driver
 
+
+scenario:
+4 web elements .
+store search result into list
+compare and return pass/fail
+we have to pass url,username and password .
+
+synchronise
+implicite wait /explicit wait/thread.sleep / mention dynamic elements
+
+browsers used:
+chrome and firefox.
 
