@@ -36,13 +36,55 @@ It is observed when suddenly all the Integration tests were getting failed.
 I used to triage the issue as per the usual triaging steps like test environment status check, reinstall the application, network connectivity etc. but still, the issue not got resolved.
 Later I decided to check the test from machine to machine with the help of test log and found that one config file content downloaded from git lab was not properly updated and it shows redirection to gitlab login page. I inferred that this is because of permission issue for this Jenkins user in gitlab and found that it is because of the gitlab privatisation happened in previouse week.suggested customer to enable a private token for this user for the time being and resolved this issue.
 
-In our test environment we didn�t have much links used in our status emails.
+In our test environment we didn’t have much links used in our status emails.
 
 In selenium there was a practice followed in our suites to verify the navigated page.
 The practice was to call a keyword to verify the presence of element from data controller immediately after calling the navigation keyword. By this whenever the navigation success and element not found, the navigation keywords was shown as pass in report. 
 
+ things before start automation project. approach to a new autmation project. best practices for automation:
  
+ The test automation is converting our manual tests into test scripts.
+1. so here we need to consider the project environment, tools and technology we are used in the project supported by the automation tool.
+2.budget and availability of resources within the budget.
+3.availability of support to perform test using the tool.
+4.support with reporting tools/ integration with test management tool
+5.support with continuouse integration tool.
+
+steps if build didnt met customer expectation:
+
+1.check the reason.
+2.requirement level-find proper methods to get requirements,review requirements,testcases,
+  skill level-provide trainings,
+3.doing corrective actions. eg: 
+4.finding preventive actions. eg:
+
+explain framework
+team or individual
+
+more idea comes  productivity increases
+enables communication opertunties and lstening opertunities
+during crisis member get supports
+
+but Making decisions can take longer bcause of multiple opinions
+emlpoy sit back and not do anything will demotivate the team
 
 
+handling different environment for diffent tests like qa,uat:
+Tool used for CI -jenkins: 
+java -jar jenkins.war
+(jenkins_url)/safeRestart - Allows all running jobs to complete. New jobs will remain in the queue to run after the restart is complete.
+
+(jenkins_url)/restart - Forces a restart without waiting for builds to complete.
+setting jobs,config slave machines and run 
+
+git 
+git revert <name of bad commit>
+
+Stashing takes your working directory that is, your modified tracked files and staged changes and saves it on a stack of unfinished changes that you can reapply at any time.
+
+git reset –soft HEAD~1
+
+
+Clean up:
 
 
