@@ -1,0 +1,447 @@
+package testscript;
+
+
+import java.io.File;
+import java.util.concurrent.TimeUnit;
+import java.io.FileInputStream;
+import java.lang.reflect.Method;
+import java.net.ServerSocket;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Properties;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+//import org.openqa.selenium.internal.seleniumemulation.Open;
+import org.openqa.selenium.remote.DesiredCapabilities;
+//import org.openqa.selenium.server.SeleniumServer;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+
+import com.gargoylesoftware.htmlunit.javascript.host.Window;
+import com.thoughtworks.selenium.DefaultSelenium;
+
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.Capabilities;
+
+import reports.ReportUtil;
+import util.DbManager;
+import util.TestConfig;
+import util.TestUtil;
+import util.monitoringMail;
+import datatable.Xlfile_Reader;
+
+import com.thoughtworks.selenium.*;
+
+import org.testng.annotations.*;
+
+import static org.testng.Assert.*;
+
+import java.util.regex.Pattern;
+
+
+
+
+public class DriverScript{
+	
+	public static Properties CONFIG;
+	public static Properties Objects;
+	public static Properties APPTEXT;
+	public static Xlfile_Reader controller;
+	//public static Xlfile_Reader testData=null;
+	public static Xlfile_Reader DBresults=null;
+	public static Random randomGenerator = new Random(); // Random Port Number generation 
+	public static String currentTest;
+	public static String keyword;
+	//public static SeleniumServer server;
+	//public static DefaultSelenium selenium=null;
+	public static WebDriver dr;
+	public static EventFiringWebDriver driver=null;
+	public static String object;
+	public static String currentTSID;
+	public static String stepDescription;
+	public static String proceedOnFail;
+	public static String testStatus;
+	public static String testData1;
+	public static String testData2;
+	public static String testData3;
+	public static String testData4;
+	public static String testData5;
+	public static String testData6;
+	public static String testData7;
+	public static String testData8;
+	public static String testData9;
+	public static String testData10;
+	public static String testData11;
+	public static String testData12;	
+	public static String testData13;
+	public static String testData14;
+	public static String testData15;
+	public static String testData16;
+	public static String testData17;	
+	public static String testData18;
+	public static String testData19;
+	public static String testData20;
+	public static int  testRepeat;
+	public static int nSelPort;
+	public static String sSelPort;
+	public static Calendar cal = new GregorianCalendar();
+	public static  int month = cal.get(Calendar.MONTH);
+	public static int year = cal.get(Calendar.YEAR);
+	public static  int sec =cal.get(Calendar.SECOND);
+	public static  int min =cal.get(Calendar.MINUTE);
+	public static  int date = cal.get(Calendar.DATE);
+	public static  int day =cal.get(Calendar.HOUR_OF_DAY);
+	public static String strDate;
+	public static String result;
+	public static String mailresult=" - Script successfully executed - no errors found";
+	public static String mailscreenshotpath;
+	public static String consoleValue=null;
+	public static String object1;
+	public static String object2;	
+	public static String browsername=null;
+	public static  DesiredCapabilities Capability=null;
+	//Get the current system time - used for generated unique file ids (ex: Screenshots, Reports etc on every test run)
+	public static String getCurrentTimeStamp()
+    { 
+          SimpleDateFormat CurrentDate = new SimpleDateFormat("MM-dd-yyyy"+"_"+"HH-mm-ss");
+          Date now = new Date(); 
+         String CDate = CurrentDate.format(now); 
+          return CDate; 
+    }
+
+	
+	
+	//Loaded the Selenium and Application log files
+	
+	public static final Logger SELENIUM_LOGS = Logger.getRootLogger();
+	public static final Logger APPLICATION_LOGS = Logger.getLogger("devpinoyLogger");
+		
+
+	
+	
+   	@BeforeSuite
+   	@Parameters({ "testContoller", "testObject" })
+   	
+  
+	public void startTesting(String testFile,String objectPath) throws Exception{
+   		
+   		// Code to Generate random numbers
+   		
+   			
+				
+		 nSelPort = randomGenerator.nextInt(40000);
+		 strDate=getCurrentTimeStamp();
+     	System.out.println("date time stamp :"+strDate);
+		 
+		 // Start testing method will start generating the Test Reports from the beginning      	 	
+    
+     	
+
+     	ReportUtil.startTesting("C://Program Files//Apache Software Foundation//Tomcat 8.0//webapps//ROOT//htmlpages//index"+strDate+".html",
+     			TestUtil.now("dd.MMMMM.yyyy hh.mm.ss aaa"), 
+     	        "Monitor Prod",
+     	        "3.1");
+       //Loading Config File
+		CONFIG = new Properties();
+		FileInputStream fs = new FileInputStream(System.getProperty("user.dir")+"\\src\\config\\config.properties");
+		CONFIG.load(fs);
+		
+		
+		// LOAD Objects properties File
+		Objects = new Properties();
+		fs = new FileInputStream(System.getProperty("user.dir")+"\\src\\config\\"+objectPath);
+		Objects.load(fs);		
+		
+	
+		//Load datatable	
+		controller= new Xlfile_Reader(System.getProperty("user.dir")+"\\src\\config\\"+testFile);
+	//	testData  =  new Xlfile_Reader(System.getProperty("user.dir")+"\\src\\config\\TestData.xlsx");
+		DBresults = new Xlfile_Reader(System.getProperty("user.dir")+"\\src\\config\\db_data.xlsx");	
+		
+		
+		
+		//Intialize selenium
+		//selenium = new DefaultSelenium("localhost",nSelPort,CONFIG.getProperty("testBrowser"),CONFIG.getProperty("ShippalmURL"));
+		//selenium.start();
+		//selenium.windowFocus();
+		//selenium.windowMaximize();		//Initializing Webdriver    
+	////For firefox browser enable  Capability= DesiredCapabilities.firefox() and  browsername = Capability.getBrowserName();;	
+	
+		dr = new FirefoxDriver();
+		Capability= DesiredCapabilities.firefox();		
+		
+
+		//System.setProperty("webdriver.chrome.driver", "D:\\Chrome\\chromedriver.exe");	
+		// Capability= DesiredCapabilities.chrome();			
+		
+		
+
+		 //ChromeOptions options = new ChromeOptions();
+	      // options.addArguments("--test-type");
+	       // dr = new ChromeDriver(options);
+	       // driver = new EventFiringWebDriver(dr);
+
+		
+		
+		 browsername = Capability.getBrowserName();
+		 System.out.println("browsername"+browsername);
+			driver = new EventFiringWebDriver(dr);	
+			driver.manage().window().maximize();
+			//dr = new HtmlUnitDriver();	 	
+				//wait for 30 seconds and then fail
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);		
+				          
+			
+		//Create db connection
+		//DbManager.setDbConnection();
+	//	DbManager.setMysqlDbConnection();
+		
+		//Pass Query - Un Comment the below queries and use them for performing database testing
+		
+	//	List<String> values =DbManager.getQuery("select top 1* from employee");
+	//	APPLICATION_LOGS.debug("Selected from employee, first column and first row value:"+values);
+		
+	//	List<String> values1 =DbManager.getMysqlQuery("select emp_name from employee limit 1");
+	//	APPLICATION_LOGS.debug("Selected from employee name:"+values1);
+		
+	}
+	
+@Test
+	
+
+	public void testApp() {
+
+	 
+		String startTime=null;
+		ReportUtil.startSuite("Suite 1");
+		for(int tcid=2 ; tcid<=controller.getRowCount("Suite1");tcid++){
+			currentTest = controller.getCellData("Suite1", "TCID", tcid);
+			
+			// initilize start time of test
+			if(controller.getCellData("Suite1", "Runmode", tcid).equals("Y")){
+				// execute the keywords
+				// loop again - rows in test data
+				int totalSets;
+			//	totalSets=testData.getRowCount(currentTest+"1");; // holds total rows in test data sheet. IF sheet does not exist then 2 by default
+				//if(totalSets<=1){
+					totalSets=2; // run atleast once
+				//}
+					
+				for( testRepeat=2; testRepeat<=totalSets;testRepeat++){	
+					startTime=TestUtil.now("dd.MMMMM.yyyy hh.mm.ss aaa");
+
+				APPLICATION_LOGS.debug("Executing the test "+ currentTest);
+				// implement keyword . Reflection API
+				try{
+				for(int tsid=2;tsid<=controller.getRowCount(currentTest);tsid++){
+					// values from xls
+					keyword=controller.getCellData(currentTest, "Keyword", tsid);
+					object=controller.getCellData(currentTest, "Object", tsid);
+					object1=controller.getCellData(currentTest, "Object1", tsid);
+					object2=controller.getCellData(currentTest, "Object2", tsid);	
+					currentTSID=controller.getCellData(currentTest, "TSID", tsid);
+					stepDescription=controller.getCellData(currentTest, "Description", tsid);
+					proceedOnFail=controller.getCellData(currentTest, "ProceedOnFail", tsid);					
+					testData1=controller.getCellData(currentTest, "testData1", tsid);
+					testData2=controller.getCellData(currentTest, "testData2", tsid);
+					testData3=controller.getCellData(currentTest, "testData3", tsid);
+					testData4=controller.getCellData(currentTest, "testData4", tsid);
+					testData5=controller.getCellData(currentTest, "testData5", tsid);
+					testData6= controller.getCellData(currentTest, "testData6", tsid);
+					testData7=controller.getCellData(currentTest, "testData7", tsid);
+					testData8=controller.getCellData(currentTest, "testData8", tsid);
+					testData9=controller.getCellData(currentTest, "testData9", tsid);
+					testData10=controller.getCellData(currentTest, "testData10", tsid);
+					testData11=controller.getCellData(currentTest, "testData11", tsid);
+					testData12=controller.getCellData(currentTest, "testData12", tsid);		
+					testData13=controller.getCellData(currentTest, "testData13", tsid);		
+					testData14=controller.getCellData(currentTest, "testData14", tsid);		
+					testData15=controller.getCellData(currentTest, "testData15", tsid);		
+					testData16=controller.getCellData(currentTest, "testData16", tsid);		
+					testData17=controller.getCellData(currentTest, "testData17", tsid);	
+					testData18=controller.getCellData(currentTest, "testData18", tsid);	
+					testData19=controller.getCellData(currentTest, "testData19", tsid);	
+					testData20=controller.getCellData(currentTest, "testData20", tsid);	
+				
+					consoleValue=null;
+					 if(proceedOnFail.equalsIgnoreCase("S")){
+							
+							continue;
+							}
+					 else if(proceedOnFail.equalsIgnoreCase("C")){
+						 consoleValue="";
+						 ReportUtil.addKeyword(stepDescription, keyword,consoleValue, result, "http://"+TestUtil.Handeler()+":8282//screenshots//"+TestUtil.imageNameIP+".jpeg",proceedOnFail);
+													
+							
+							continue;
+							}
+					
+				
+					Method method=Keywords.class.getMethod(keyword);
+					result = (String)method.invoke(method);
+					APPLICATION_LOGS.debug("***Result of executionss -- "+result);
+					
+					// take screenshot - every keyword
+					String fileName="Suite1_TC"+(tcid-1)+"_TS"+tsid+"_"+keyword+testRepeat+".jpg";
+				
+					
+					if(result.startsWith("Pass")){
+			
+						testStatus=result;
+						
+						//Uncomment this one to capture screenshots in case of Pass
+						//TestUtil.captureScreenshot(CONFIG.getProperty("screenshotPath")+TestUtil.imageName+".jpeg");
+						
+					ReportUtil.addKeyword(stepDescription, keyword,consoleValue, result, "http://"+TestUtil.Handeler()+":8282//screenshots//"+TestUtil.imageNameIP+".jpeg",proceedOnFail);
+					
+					}else if(result.startsWith("Verify Fail")){
+						testStatus=result;
+						TestUtil.captureScreenshot(CONFIG.getProperty("screenshotPath")+TestUtil.imageName+".jpeg");
+						ReportUtil.addKeyword(stepDescription, keyword,consoleValue, result, "http://"+TestUtil.Handeler()+":8282//screenshots//"+TestUtil.imageNameIP+".jpeg",proceedOnFail);
+						
+						
+					}
+					
+					else if(result.startsWith("Fail")){
+							testStatus=result;
+							// take screenshot - only on error
+						TestUtil.captureScreenshot(CONFIG.getProperty("screenshotPath")+TestUtil.imageName+".jpeg");
+					    	
+							//changed to make the screenshot path generic
+						ReportUtil.addKeyword(stepDescription, keyword,consoleValue, result, "http://"+TestUtil.Handeler()+":8282//screenshots//"+TestUtil.imageNameIP+".jpeg",proceedOnFail);
+					//	mailscreenshotpath = "C:/CMAutomation/tomcat-6.0/webapps/ROOT/screenshots/"+currentTest+currentTSID+TestUtil.year+"_"+TestUtil.date+"_"+(TestUtil.month+1)+"_"+TestUtil.day+"_"+TestUtil.min+"_" +TestUtil.sec+".jpeg";
+						mailscreenshotpath = TestUtil.imageName+".jpeg";
+						System.out.println("your screenshot path :: "+ mailscreenshotpath);
+						
+						//System.out.println("Your attachemnt path"+ TestConfig.attachmentPath);
+							mailresult=" - Script failed ";
+							
+							
+							
+							
+							if(proceedOnFail.equalsIgnoreCase("N")){
+								
+								break;
+								
+								
+							}
+							else if(proceedOnFail.equalsIgnoreCase("Y")){
+								
+							continue;
+								
+								
+							}
+							
+						break;
+						
+						}
+					
+					}
+					
+					
+				}
+				catch(Throwable t){
+								
+					APPLICATION_LOGS.debug("Error came");
+					
+				}
+				// report pass or fail
+				
+				if(testStatus == null){
+					testStatus="Pass";
+				}
+				APPLICATION_LOGS.debug("***********************************"+currentTest+" --- " +testStatus);
+				ReportUtil.addTestCase(currentTest, 
+										startTime, 
+										TestUtil.now("dd.MMMMM.yyyy hh.mm.ss aaa"),
+										testStatus);
+				
+				if(result.startsWith("Fail")){
+				
+					break; 
+	                  }
+				
+				
+				}// test data
+
+				
+				
+				
+			}else{
+				APPLICATION_LOGS.debug("Skipping the test "+ currentTest);
+				testStatus="Skip";
+				
+				// report skipped
+				APPLICATION_LOGS.debug("***********************************"+currentTest+" --- " +testStatus);
+				ReportUtil.addTestCase(currentTest, 
+										TestUtil.now("dd.MMMMM.yyyy hh.mm.ss aaa"), 
+										TestUtil.now("dd.MMMMM.yyyy hh.mm.ss aaa"),
+										testStatus);
+				
+			}
+			
+			testStatus=null;
+			
+			if(result.startsWith("Fail")){
+                break; 
+                }
+			
+
+		}
+		ReportUtil.endSuite();
+	}
+	
+	
+
+	
+	@AfterSuite
+	public static void endScript() throws Exception{
+		
+		// Once the test is completed update the end time in HTML report
+		ReportUtil.updateEndTime(TestUtil.now("dd.MMMMM.yyyy hh.mm.ss aaa"));
+		
+	
+		
+		// Sending Mail when script fails
+		if(result.startsWith("Fail")){
+			
+		
+		driver.quit();
+		
+			//monitoringMail.sendMail(TestConfig.server, TestConfig.from,TestConfig.username, TestConfig.password,TestConfig.port, TestConfig.to, TestConfig.subject+mailresult+" "+"on step "+stepDescription+'-'+" "+result+" "+" "+"Timed out after "+Keywords.globalwait+"+login.globalwait seconds", TestConfig.messageBody, mailscreenshotpath, TestConfig.attachmentName);
+		monitoringMail.sendMail(TestConfig.server, TestConfig.from, TestConfig.to, TestConfig.subject+mailresult+" "+"on step "+stepDescription+'-'+" "+result+" "+" "+"Timed out after "+" seconds", TestConfig.messageBody, mailscreenshotpath, TestConfig.attachmentName);
+			
+		}
+		
+		// Sending Mail After Execution of All TestCases ON HOLD AND RECOMENDED ONLY FOR COMPLETE BVT
+		
+		//monitoringMail.sendMail(TestConfig.server, TestConfig.from, TestConfig.to, TestConfig.subject+mailresult, TestConfig.messageBody, TestConfig.attachmentPath, TestConfig.attachmentName);
+		
+		//or
+		
+		//	monitoringMail.sendMail(TestConfig.server, TestConfig.from, TestConfig.to, TestConfig.subject, TestConfig.messageBody, TestConfig.attachmentPath, TestConfig.attachmentName);
+		
+	//	driver.quit();
+		
+		 
+	}
+	
+
+}
