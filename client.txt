@@ -1,4 +1,4 @@
-Project Exp
+﻿Project Exp
 ************
 My Name is Muhammed Nisar PK.
 I am an Eng graduate in Compiuter science.
@@ -7,7 +7,7 @@ I have 6.3 years of experience in Software industry.
 
 I have good skill in both manual and autonation testing.
 
-The previouse project I worked is Riverbed Steelhead, it is a wan opti device.
+The previouse project I worked is Riverbed QA engagement TAAS ,it is a wan opti device.
 In this project i used jenkins,testrail,git,bugzilla and test automation tool GRiTS.
 Here we used to perform FIT and PR tests.
 Fit is performed to ensure the quality of Feature integration test 
@@ -18,50 +18,103 @@ we used to report bugs when test fails because of product issues.
 
 The other major project was Shippalm Synergy, it is a ship operation management application.
 I have worked with 2 major modules of this project , Crewmanagement and Portage bill .
-In this project i used Sele selenium hybrid framework using java and testng,TFS,SVN and Bugzilla.
-Here we used selenium to perform only regression test.
+In this project i used Sele selenium hybrid framework using java and testng,TFS,SVN .
+Here we used selenium to perform only sanity and regression test.
 2.5 years of automation.
 
 my project exp include both web and nw applications.
-I am an ISTQB  Foundation level International Software Testing Qualifications Board certifie tester
+I am an ISTQB  Foundation level certified tester( International Software Testing Qualifications Board)
 
+Most challenged project:
 
-
+Most challenged project was Riverbed . When compare to the previouse project , this is a network project ,
+test cases includes memory leak tests.
 
 
 Most challenged issue:
+
+One of the most challenging issue happened in selenium was when I was working with shippalm geolocation screen. Here google map was used for geolocation. I wanted to verify the labels over the map after double clicking at a particular region of the map.
+My challenge was to find a locater over the map to perform double click and getText , but it was not possible in any of the usual methods.
+After my research I came to know that the map is implemented using html5 canvas, and it will function like an image over the screen.it is not possible to inspect elements over the map .
+
+The following solutions are used to fix this issue. 
+1.	Used actions class, moveByOffset(500, 500).doubleClick().build(); over the entire screen and mouse moved to the position  located by x and y . I was worked.
+2.	Next challenge was to compare a string with object shown in geolocator.
+For this, rather than comparing strings, we used image comparison.  so the expected screen image  was stored in local storage  and result image was would be taken as screenshot during the test itself. 
+Once the images are matching the test will be pass  other wise the test will be fail
+	Code:
+
+	try{
+	driver.manage().window().maximize(); 
+driver.get("https://developers.google.com/maps/documentation/javascript/adding-a-google-map");
+		 driver.manage().timeouts().pageLoadTimeout(50,TimeUnit.SECONDS);
+		 
+		 JavascriptExecutor js=(JavascriptExecutor)driver;
+		 js.executeScript("window.scrollBy(0,500)");
+		 
+		 Actions actions=new Actions(driver);
+ Action clickcentre = actions.moveByOffset(500,      500).doubleClick().build();
+		clickcentre.perform();
+		 
+		  Pattern img = new Pattern("C:\\Users\\Kaiju\\Downloads\\vallathole.PNG");
+		  Finder f1=new Finder(img.getImage());
+		  File scrfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		  FileUtils.copyFile(scrfile,new File("C:\\Users\\Kaiju\\Downloads\\vallathole1.PNG"));
+		  Pattern img1 = new Pattern("C:\\Users\\Kaiju\\Downloads\\vallathole1.PNG");
+		  f1.find(img1);
+		  if(f1.hasNext()){
+		  org.sikuli.script.Match m=f1.next();
+		  System.out.println("verified");
+		  f1.destroy();}
+		  else{
+			  System.out.println("not verified"); 
+		  }
+		}catch(Throwable t){
+			
+			// Report error in Application logs
+			APPLICATION_LOGS.debug("Error while navigating -"+ object + t.getMessage());
+					   
+		}
+		return "Pass";
+
 
 In riverbed project, there was an issue happened because of gitlab privatisation.
 It is observed when suddenly all the Integration tests were getting failed.
 I used to triage the issue as per the usual triaging steps like test environment status check, reinstall the application, network connectivity etc. but still, the issue not got resolved.
 Later I decided to check the test from machine to machine with the help of test log and found that one config file content downloaded from git lab was not properly updated and it shows redirection to gitlab login page. I inferred that this is because of permission issue for this Jenkins user in gitlab and found that it is because of the gitlab privatisation happened in previouse week.suggested customer to enable a private token for this user for the time being and resolved this issue.
 
-In our test environment we didn’t have much links used in our status emails.
 
-In selenium there was a practice followed in our suites to verify the navigated page.
-The practice was to call a keyword to verify the presence of element from data controller immediately after calling the navigation keyword. By this whenever the navigation success and element not found, the navigation keywords was shown as pass in report. 
-
- things before start automation project. approach to a new autmation project. best practices for automation:
+things before start automation project. approach to a new autmation project. best practices for automation:
  
- The test automation is converting our manual tests into test scripts.
-1. so here we need to consider the project environment, tools and technology we are used in the project supported by the automation tool(feasibility study).and select automation tool.
-2.budget and availability of resources within the budget. selenium is open source most cost effective when compare to other available tools.
-3.availability of support to perform test using the tool.Selenium has more communities online to support.
+The test automation is converting our manual tests into test scripts.
+1. so here we need to consider the project environment, tools and technology we are used in the project supported by the automation tool
+a feasibility study would be good in earlier stage. if the application is a web based app ,then selenium java is a best option.
+ if network means opython is best for automation.
+2. prepare atleast 2 POC proof of concept by considering few parameters like 
+3.  availability of technical support to perform test using the tool.Selenium has more communities online to support.
+	budget and availability of resources within the budget. selenium is open source most cost effective when compare to other available tools.
 4.support with reporting tools/ integration with test management tool.  
 5.support with continuouse integration tool. Selenium projects can be integrated with tools like jenkins.
 6.The application should be stable at least for 2,3 modules and manual test should performed before.
-7.choose framework with maximum reusable components, 
-8.prepare atleast 2 POC proof of concept.
+7.choose framework with maximum reusable components.
+
 
 steps if build didnt met customer expectation:
 
-1.check the reason.
-2.requirement level-find proper methods to get requirements,review requirements,testcases,
+1.find the reason. accept mistake and communicate reason.
+2.doing corrective actions. eg: 
+3.finding preventive actions. eg:
+4.requirement level-find proper methods to get requirements,review requirements,testcases,
   skill level-provide trainings,
-3.doing corrective actions. eg: 
-4.finding preventive actions. eg:
 
 explain framework
+hybrid frame work using java and test ng selenium
+the frame work used html reports and log4j loging
+objects and config are in properties file
+poi is used to enable xlfile reader , this is used for test controller sheet/suit .
+explain flow of framework including driver script
+
+
 team or individual
 
 more idea comes  productivity increases
@@ -72,8 +125,10 @@ but Making decisions can take longer bcause of multiple opinions
 emlpoy sit back and not do anything will demotivate the team
 
 
-handling different environment for diffent tests like qa,uat: in case of selenium, each envirmnet will be different with diffrent servers,so the app url ,username and password ,browser,controller sheet/suit based on test will be different 
-The code remins same but we can customize config part for this.
+handling different environment for diffent tests like qa,uat: in case of selenium, each envirmnet will be different with diffrent servers,
+so the app url ,username and password ,browser,controller sheet/suit based on test will be different 
+The code remins same but we can customize config part for this. like url,browser,u name and password.
+sanity test and regression test performed using selenium.
 
 Tool used for CI -jenkins: 
 java -jar jenkins.war
@@ -91,9 +146,10 @@ git reset –soft HEAD~1
 
 
 Clean up:
-logout 
-disconnect all opened connections
-disconnect from excel file reader
+logout (usually it will come as part of test)
+disconnect opened connections like sql db connection
+update test end time in result report
+send email with log links and report links.
 close driver
 quit driver
 
@@ -109,4 +165,5 @@ implicite wait /explicit wait/thread.sleep / mention dynamic elements
 
 browsers used:
 chrome and firefox.
+used to run one by one.based on the browser in config file it will run 
 
