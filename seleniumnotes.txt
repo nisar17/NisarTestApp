@@ -1,0 +1,108 @@
+Implicite wait
+driver.manage().Timeout.ImplicitlyWait(10,Timeunit.SECOND);
+
+page load time out
+
+driver.manage().Timeouts()Pageloadtimeout(10,Timeunit.SECONDS);
+
+Thread.sleep.
+
+explicite wait
+
+WebdriverWait wait=new WebdriverWait(driver,10);
+wait.untill(Expectedconditions.ElementTobeClickable(By.xpath("//[@id=1234]"));
+
+visibilityofelement(Webelement);
+visibilityofelementlocated(By.xpath);
+
+ElementTobeClickable(element)
+ElementTobeSelected
+frametobeavailableandswitchtoit(fid/fname/flocator)
+
+check displayed or not
+
+we.isDisplayed();
+we.isSelected();
+we.isEnabled();
+
+select sel=new Select(we);
+sel.selectbyindex(1);
+sel.selectbyvalue("value");
+sel.select.visibletext("text");
+
+list <WebElements> we=driver.findelements etc
+for(webelement web:we)
+{
+}
+
+Javascript
+************
+Clcik button -  ("aruments[0].click();",button)
+scroll       -  ("window.scrollby(0,500)");
+alert        -  ("alert("Message");");
+domain       - ("return document.domain").toString();
+                ("return document.title").toString();
+                ("window.location="url");
+		("history.go(0)");
+                ("document.getElementById("value")).click();");
+		("document.getElementById("value")).checked=false;");
+		document.documentElement.innerText;").toString();
+
+Actions action=new Actions(driver);
+Action mover=action.moveToElenment(Webel).build();
+action1.perform();
+
+
+Set <String> handles =driver.getWindowHandles();
+
+or 
+for(String handle:handles)
+{}
+
+driver.switchTo().window(handle);
+driver.switchTo().frame(id);
+driver.switchTo().frame(name);
+driver.switchTo().frame(frameindex);
+webelemet frameelement=driver.find elements(By.id());
+driver.swithTo().frame(frameelement);
+nosuchelemntin frame
+no such frame exception
+
+
+Aler alert= driver.swithTo().alert();
+alert.accept();
+alert.dismiss();
+alert.gettext();
+alert.SendKeys("text");
+
+driver.swithTo().defaultContent();
+
+
+
+Ation seires=builder
+.clickAndHold(text)
+.doubleClick(uname)
+.contextClick()
+.dragAndDrop(source,target)
+.movetoelement(text).click()
+.keyDown(txt,Keys.SHIFT)
+.sendkeys("value")
+.keyUp(tct,keysSHIFT)
+.build();
+series.perform();
+
+Dropdown /Select Tag
+Select sel=new Select(webelement);
+sel.selectByVisibletext
+sel.deselectByVisibletext
+sel.selectByindex
+sel.deselectByindex
+sel.selectByvalue
+sel.deselectByvalue
+sel.isMultiple();
+sel.deselectAll();
+
+
+JavascriptExecuter js= (JavascriptExecuter) driver;
+js.executeScript("alert('text');");
+String string=js.executeScript("return document.URL;").toString();
