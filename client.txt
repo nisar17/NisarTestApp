@@ -2,6 +2,7 @@
 ************
 My Name is Muhammed Nisar PK.
 I am an Eng graduate in Compiuter science.
+
 Currently working as a senoir software engineer with Rapidvalue.
 I have 6.3 years of experience in Software industry.
 
@@ -83,6 +84,22 @@ It is observed when suddenly all the Integration tests were getting failed.
 I used to triage the issue as per the usual triaging steps like test environment status check, reinstall the application, network connectivity etc. but still, the issue not got resolved.
 Later I decided to check the test from machine to machine with the help of test log and found that one config file content downloaded from git lab was not properly updated and it shows redirection to gitlab login page. I inferred that this is because of permission issue for this Jenkins user in gitlab and found that it is because of the gitlab privatisation happened in previouse week.suggested customer to enable a private token for this user for the time being and resolved this issue.
 
+team or individual
+
+more idea comes  productivity increases
+enables communication opertunties and lstening opertunities
+during crisis member get supports
+
+but Making decisions can take longer bcause of multiple opinions
+emlpoy sit back and not do anything will demotivate the team
+
+explain framework
+hybrid frame work using java and test ng selenium
+the frame work used html reports and log4j loging
+objects and config are in properties file
+poi is used to enable xlfile reader , this is used for test controller sheet/suit .
+explain flow of framework including driver script
+
 
 things before start automation project. approach to a new autmation project. best practices for automation:
  
@@ -107,23 +124,6 @@ steps if build didnt met customer expectation:
 4.requirement level-find proper methods to get requirements,review requirements,testcases,
   skill level-provide trainings,
 
-explain framework
-hybrid frame work using java and test ng selenium
-the frame work used html reports and log4j loging
-objects and config are in properties file
-poi is used to enable xlfile reader , this is used for test controller sheet/suit .
-explain flow of framework including driver script
-
-
-team or individual
-
-more idea comes  productivity increases
-enables communication opertunties and lstening opertunities
-during crisis member get supports
-
-but Making decisions can take longer bcause of multiple opinions
-emlpoy sit back and not do anything will demotivate the team
-
 
 handling different environment for diffent tests like qa,uat: in case of selenium, each envirmnet will be different with diffrent servers,
 so the app url ,username and password ,browser,controller sheet/suit based on test will be different 
@@ -144,6 +144,24 @@ Stashing takes your working directory that is, your modified tracked files and s
 
 git reset –soft HEAD~1
 
+synchronise
+implicite wait /explicit wait/thread.sleep / mention dynamic elements
+
+scenario:
+4 web elements .
+store search result into list
+
+for (WebElement searchkey : resultkeys )
+    {
+        String str = searchkey.getText(); 
+if(str.contains("searchstring"));
+
+compare and return pass/fail
+we have to pass url,username and password .
+compare and return pass/fail
+
+we have to pass url,username and password only for login .
+
 
 Clean up:
 logout (usually it will come as part of test)
@@ -154,16 +172,17 @@ close driver
 quit driver
 
 
-scenario:
-4 web elements .
-store search result into list
-compare and return pass/fail
-we have to pass url,username and password .
 
-synchronise
-implicite wait /explicit wait/thread.sleep / mention dynamic elements
 
 browsers used:
 chrome and firefox.
 used to run one by one.based on the browser in config file it will run 
 
+Reason Cross Browser Issues 
+3. Font size mismatch in different browsers. 
+4. JavaScript implementation can be different. 
+5. CSS,HTML validation difference can be there. 
+6. Some browser still not supporting HTML5. 
+7. Page alignment and div size. 
+8. Image orientation. 
+9. Browser incompatibility with OS. Etc.
