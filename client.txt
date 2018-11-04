@@ -1,5 +1,7 @@
-﻿Project Exp
-************
+﻿************************************************************************************************************
+ Project Exp
+************************************************************************************************************
+
 My Name is Muhammed Nisar PK.
 I am an Eng graduate in Compiuter science.
 
@@ -29,15 +31,18 @@ Here we used selenium to perform only sanity and regression test.
 my project exp include both web and nw applications.
 I am an ISTQB  Foundation level certified tester( International Software Testing Qualifications Board)
 
+************************************************************************************************************
 Most challenged project:
+************************************************************************************************************
 
 Most challenged project was Riverbed.
 When compare to the previouse project , this is a network project.
 It was a challenge to get familiar with new things in short period of time.
 The complexity of test cases were bit high  like test cases includes memory leak tests.
 
-
+************************************************************************************************************
 Most challenged issue:
+************************************************************************************************************
 
 One of the most challenging issue happened in selenium was when I was working with shippalm geolocation screen.  .Here google map was used for geolocation. I wanted to verify the labels over the map after double clicking at a particular region of the map.
 My challenge was to find a locater over the map to perform double click and getText , but it was not possible in any of the usual methods.
@@ -91,7 +96,9 @@ Later I decided to check the test from machine to machine with the help of test 
 
 curl --request GET --header 'PRIVATE-TOKEN: 9koXpg98eAheJpvBs5tK' 'https://gitlab.example.com/api/v4/projects/13083/repository/files/app%2Fmodels%2Fkey%2Erb/raw?ref=master'
 
+************************************************************************************************************
 team or individual
+************************************************************************************************************
 
 more idea comes  productivity increases
 enables communication opertunties and lstening opertunities
@@ -100,16 +107,20 @@ during crisis member get supports
 but Making decisions can take longer bcause of multiple opinions
 emlpoy sit back and not do anything will demotivate the team
 
+************************************************************************************************************
 explain framework
+************************************************************************************************************
+
 hybrid frame work using java and test ng selenium
 the frame work used html reports and log4j loging
 objects and config are in properties file
 poi is used to enable xlfile reader , this is used for test controller sheet/suit .
 explain flow of framework including driver script
 
-
+************************************************************************************************************
 things before start automation project. approach to a new autmation project. best practices for automation:
- 
+************************************************************************************************************.
+
 The test automation is converting our manual tests into test scripts.
 1. so here we need to consider the project environment, tools and technology we are used in the project supported by the automation tool
 a feasibility study would be good in earlier stage. if the application is a web based app ,then selenium java is a best option.
@@ -144,14 +155,29 @@ sanity test and regression test performed using selenium.
 ************************************************************************************************************
 Tool used for CI -jenkins: 
 ************************************************************************************************************
-
+job-
+new job - freestyle project
+General settings- Description,Git url,parameter,enable or disable
+Source code mgmt- Git =-git link url,credentials and branch
+                  SVN,/none
+Build trigger -build Periodically 
+               # every fifteen minutes (perhaps at :07, :22, :37, :52)
+		H/15 * * * *  
+		Poll scm  -same as periodical but check scm repop for changes
+Build environment-Delete workspace before build starts,Abort the build if it's stuck, etc
+Build -can add build steps : execute windows batch ,build visual studio project - if plugin configured , execute shen , invoke ANT.
+Post build actions-archive artifacts,email notification,delete work space etc
 
 java -jar jenkins.war
 (jenkins_url)/safeRestart - Allows all running jobs to complete. New jobs will remain in the queue to run after the restart is complete.
 (jenkins_url)/restart - Forces a restart without waiting for builds to complete.
 setting jobs,config slave machines and run 
+Manage Jenkins -Configuration-                jenkins url,email notification smtp server,time format etc
+Manage Jenkins -Global Tool Configuration     Git,Maven,Ant,MSbuild path
+Manage Jenkin-sManage plugins - msbuild,git,email notification,svn and ANT
+Manage Jenkin-sManage nodes- new- validating console output .
 
-Manage Jenkins -Manage plugins -‘Git plugin/ install /restart and check  Source code Management section, you will now see ‘Git’ as an option.
+	 -‘Git plugin/ install /restart and check  Source code Management section, you will now see ‘Git’ as an option.
 
 
 ************************************************************************************************************
