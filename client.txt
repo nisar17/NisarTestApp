@@ -122,8 +122,9 @@ a feasibility study would be good in earlier stage. if the application is a web 
 6.The application should be stable at least for 2,3 modules and manual test should performed before.
 7.choose framework with maximum reusable components.
 
-
+************************************************************************************************************
 steps if build didnt met customer expectation:
+************************************************************************************************************
 
 1.find the reason. accept mistake and communicate reason.
 2.doing corrective actions. eg: 
@@ -131,8 +132,11 @@ steps if build didnt met customer expectation:
 4.requirement level-find proper methods to get requirements,review requirements,testcases,
   skill level-provide trainings,
 
+************************************************************************************************************
+handling different environment for diffent tests like qa,uat:
+************************************************************************************************************
 
-handling different environment for diffent tests like qa,uat: in case of selenium, each envirmnet will be different with diffrent servers,
+in case of selenium, each envirmnet will be different with diffrent servers,
 so the app url ,username and password ,browser,controller sheet/suit based on test will be different 
 The code remins same but we can customize config part for this. like url,browser,u name and password.
 sanity test and regression test performed using selenium.
