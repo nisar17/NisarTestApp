@@ -10,6 +10,8 @@ I have good skill in both manual and autonation testing.
 
 The previouse project I worked is Riverbed QA engagement TAAS ,it is a wan opti device.
 In this project i used jenkins,testrail,git,bugzilla and test automation tool GRiTS.
+Jenkins is solely used by QA for scheduling and executing automation. Jenkins jobs are used for executing test cases located in Testrail.
+Testrail is used primarily for the reporting aspect of testing, but it also is used for creating and executing manual test cases.
 Here we used to perform FIT and PR tests.
 Fit is performed to ensure the quality of Feature integration test 
 and PR is used to perform point release regression.
@@ -20,6 +22,7 @@ we used to report bugs when test fails because of product issues.
 The other major project was Shippalm Synergy, it is a ship operation management application.
 I have worked with 2 major modules of this project , Crewmanagement and Portage bill .
 In this project i used Sele selenium hybrid framework using java and testng,TFS,SVN .
+TFS is used for creating and executing test cases and reporting bug.
 Here we used selenium to perform only sanity and regression test.
 2.5 years of automation.
 
@@ -28,13 +31,15 @@ I am an ISTQB  Foundation level certified tester( International Software Testing
 
 Most challenged project:
 
-Most challenged project was Riverbed . When compare to the previouse project , this is a network project ,
-test cases includes memory leak tests.
+Most challenged project was Riverbed.
+When compare to the previouse project , this is a network project.
+It was a challenge to get familiar with new things in short period of time.
+The complexity of test cases were bit high  like test cases includes memory leak tests.
 
 
 Most challenged issue:
 
-One of the most challenging issue happened in selenium was when I was working with shippalm geolocation screen. Here google map was used for geolocation. I wanted to verify the labels over the map after double clicking at a particular region of the map.
+One of the most challenging issue happened in selenium was when I was working with shippalm geolocation screen.  .Here google map was used for geolocation. I wanted to verify the labels over the map after double clicking at a particular region of the map.
 My challenge was to find a locater over the map to perform double click and getText , but it was not possible in any of the usual methods.
 After my research I came to know that the map is implemented using html5 canvas, and it will function like an image over the screen.it is not possible to inspect elements over the map .
 
@@ -84,6 +89,8 @@ It is observed when suddenly all the Integration tests were getting failed.
 I used to triage the issue as per the usual triaging steps like test environment status check, reinstall the application, network connectivity etc. but still, the issue not got resolved.
 Later I decided to check the test from machine to machine with the help of test log and found that one config file content downloaded from git lab was not properly updated and it shows redirection to gitlab login page. I inferred that this is because of permission issue for this Jenkins user in gitlab and found that it is because of the gitlab privatisation happened in previouse week.suggested customer to enable a private token for this user for the time being and resolved this issue.
 
+curl --request GET --header 'PRIVATE-TOKEN: 9koXpg98eAheJpvBs5tK' 'https://gitlab.example.com/api/v4/projects/13083/repository/files/app%2Fmodels%2Fkey%2Erb/raw?ref=master'
+
 team or individual
 
 more idea comes  productivity increases
@@ -130,24 +137,102 @@ so the app url ,username and password ,browser,controller sheet/suit based on te
 The code remins same but we can customize config part for this. like url,browser,u name and password.
 sanity test and regression test performed using selenium.
 
+************************************************************************************************************
 Tool used for CI -jenkins: 
+************************************************************************************************************
+
+
 java -jar jenkins.war
 (jenkins_url)/safeRestart - Allows all running jobs to complete. New jobs will remain in the queue to run after the restart is complete.
-
 (jenkins_url)/restart - Forces a restart without waiting for builds to complete.
 setting jobs,config slave machines and run 
 
+Manage Jenkins -Manage plugins -‘Git plugin/ install /restart and check  Source code Management section, you will now see ‘Git’ as an option.
+
+
+************************************************************************************************************
 git 
+************************************************************************************************************
 git revert <name of bad commit>
 
 Stashing takes your working directory that is, your modified tracked files and staged changes and saves it on a stack of unfinished changes that you can reapply at any time.
 
 git reset –soft HEAD~1
 
-synchronise
-implicite wait /explicit wait/thread.sleep / mention dynamic elements
+git pull does a git fetch followed by a git merge
 
+git log  command to view log details. [jerry@CentOS project]$ git log, details like commit id,commit ,auther,date,message (all commits)
+
+git show command to view the commit details. The git show command takes SHA-1 commit ID as a parameter.
+[jerry@CentOS project]$ git show cbe1249b140dad24b2c35b15cc7e26a6f02d2277, details of git log+ code diff
+
+git diff shows diffrence between current and new ++ and -- 
+
+git push-The Push operation stores data permanently to the Git repository. After a successful push operation, other developers can see changes :[jerry@CentOS project]$ git push origin master
+
+In Git, the stash operation takes your modified tracked files, stages changes, and saves them on a stack of unfinished changes that you can reapply at any time.
+
+[jerry@CentOS project]$ git status -s
+M string.c
+?? string
+Now, you want to switch branches for customer escalation, but you don’t want to commit what you’ve been working on yet; so you’ll stash the changes. To push a new stash onto your stack, run the git stash command.
+
+[jerry@CentOS project]$ git stash
+Saved working directory and index state WIP on master: e86f062 Added my_strcpy function
+HEAD is now at e86f062 Added my_strcpy function
+Now, your working directory is clean and all the changes are saved on a stack. Let us verify it with the git status command.
+
+[jerry@CentOS project]$ git status -s
+?? string
+Now you can safely switch the branch and work elsewhere. We can view a list of stashed changes by using the git stash list command.
+
+[jerry@CentOS project]$ git stash list
+stash@{0}: WIP on master: e86f062 Added my_strcpy function
+Suppose you have resolved the customer escalation and you are back on your new feature looking for your half-done code, just execute the git stash pop command, to remove the changes from the stack and place them in the current working directory.
+
+[jerry@CentOS project]$ git status -s
+?? string
+
+[jerry@CentOS project]$ git stash pop
+The above command will produce the following result:
+
+# On branch master
+# Changed but not updated:
+# (use "git add ..." to update what will be committed)
+# (use "git checkout -- ..." to discard changes in working directory)
+
+git mv used for rename / move 
+git rm used to delete
+
+delete branch: git branch -D test_branch
+
+************************************************************************************************************
+implicite wait /explicit wait/thread.sleep / mention dynamic elements
+************************************************************************************************************
+Implicite wait
+driver.manage().Timeout.ImplicitlyWait(10,Timeunit.SECOND);
+
+page load time out
+
+driver.manage().Timeouts()Pageloadtimeout(10,Timeunit.SECONDS);
+
+Thread.sleep.
+
+explicite wait
+
+WebdriverWait wait=new WebdriverWait(driver,10);
+wait.untill(Expectedconditions.ElementTobeClickable(By.xpath("//[@id=1234]"));
+
+visibilityofelement(Webelement);
+visibilityofelementlocated(By.xpath);
+
+ElementTobeClickable(element)
+ElementTobeSelected
+frametobeavailableandswitchtoit(fid/fname/flocator)
+
+************************************************************************************************************
 scenario:
+************************************************************************************************************
 4 web elements .
 store search result into list
 
@@ -162,8 +247,9 @@ compare and return pass/fail
 
 we have to pass url,username and password only for login .
 
-
+************************************************************************************************************
 Clean up:
+************************************************************************************************************
 logout (usually it will come as part of test)
 disconnect opened connections like sql db connection
 update test end time in result report
@@ -171,10 +257,9 @@ send email with log links and report links.
 close driver
 quit driver
 
-
-
-
+************************************************************************************************************
 browsers used:
+************************************************************************************************************
 chrome and firefox.
 used to run one by one.based on the browser in config file it will run 
 
