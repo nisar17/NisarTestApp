@@ -31,6 +31,7 @@ Here we used selenium to perform only sanity and regression test.
 my project exp include both web and nw applications.
 I am an ISTQB  Foundation level certified tester( International Software Testing Qualifications Board)
 
+
 ************************************************************************************************************
 Most challenged project:
 ************************************************************************************************************
@@ -66,6 +67,10 @@ Once the images are matching the test will be pass  other wise the test will be 
 		 Actions actions=new Actions(driver);
 		 Action clickcentre = actions.moveByOffset(500,500).doubleClick().build();
 		 clickcentre.perform();
+		 
+		 new Actions(driver)
+		.moveToElement(canvas, xWithinCanvas, yWithinCanvas)
+		.click().perform();
 		 
 		  Pattern img = new Pattern("C:\\Users\\Kaiju\\Downloads\\vallathole.PNG");
 		  Finder f1=new Finder(img.getImage());
