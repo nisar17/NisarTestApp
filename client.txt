@@ -10,8 +10,8 @@ I have 6.3 years of experience in Software industry.
 
 I have good skill in both manual and autonation testing.
 
-The previouse project I worked is Riverbed QA engagement TAAS ,it is a wan opti device.
-In this project i used jenkins,testrail,git,bugzilla and test automation tool GRiTS.
+The previouse project I worked is Riverbed QA engagement TAAS ,Steel head ,it is a wan opti device.
+In this project i used jenkins,testrail,bugzilla and test automation tool GRiTS.
 Jenkins is solely used by QA for scheduling and executing automation. Jenkins jobs are used for executing test cases located in Testrail.
 Testrail is used primarily for the reporting aspect of testing, but it also is used for creating and executing manual test cases.
 Here we used to perform FIT and PR tests.
@@ -57,15 +57,15 @@ Once the images are matching the test will be pass  other wise the test will be 
 
 	try{
 	driver.manage().window().maximize(); 
-driver.get("https://developers.google.com/maps/documentation/javascript/adding-a-google-map");
+        driver.get("https://developers.google.com/maps/documentation/javascript/adding-a-google-map");
 		 driver.manage().timeouts().pageLoadTimeout(50,TimeUnit.SECONDS);
 		 
 		 JavascriptExecutor js=(JavascriptExecutor)driver;
 		 js.executeScript("window.scrollBy(0,500)");
 		 
 		 Actions actions=new Actions(driver);
- Action clickcentre = actions.moveByOffset(500,      500).doubleClick().build();
-		clickcentre.perform();
+		 Action clickcentre = actions.moveByOffset(500,500).doubleClick().build();
+		 clickcentre.perform();
 		 
 		  Pattern img = new Pattern("C:\\Users\\Kaiju\\Downloads\\vallathole.PNG");
 		  Finder f1=new Finder(img.getImage());
@@ -111,11 +111,17 @@ emlpoy sit back and not do anything will demotivate the team
 explain framework
 ************************************************************************************************************
 
-hybrid frame work using java and test ng selenium
-the frame work used html reports and log4j loging
+hybrid frame work using java and test ng and selenium
+the frame work used html for reports and log4j for loging 
 objects and config are in properties file
-poi is used to enable xlfile reader , this is used for test controller sheet/suit .
+poi is used to enable xlfile reader , this is used for test controller sheet/suit and test data mgmt .
+scripts are driver scripts to control etire f/w with help of key words,common functions and project scripts.
+monitorin mail for sendmail, Testconfig for mail data,screenshotpath and db details.
+testutil for zip,screenshot etc
 explain flow of framework including driver script
+
+run from our machine after svn checkout
+results will be emailed and necessary files will be copied todeliverable paths.
 
 ************************************************************************************************************
 things before start automation project. approach to a new autmation project. best practices for automation:
@@ -147,10 +153,12 @@ steps if build didnt met customer expectation:
 handling different environment for diffent tests like qa,uat:
 ************************************************************************************************************
 
+sanity test and regression test performed using selenium.
 in case of selenium, each envirmnet will be different with diffrent servers,
 so the app url ,username and password ,browser,controller sheet/suit based on test will be different 
-The code remins same but we can customize config part for this. like url,browser,u name and password.
-sanity test and regression test performed using selenium.
+The code remins same but we can customize config part for this. additionally we can have to change email groups,
+db connections,
+
 
 ************************************************************************************************************
 Tool used for CI -jenkins: 
@@ -176,7 +184,9 @@ Manage Jenkins -Configuration-                jenkins url,email notification smt
 Manage Jenkins -Global Tool Configuration     Git,Maven,Ant,MSbuild path
 Manage Jenkin-sManage plugins - msbuild,git,email notification,svn and ANT
 Manage Jenkin-sManage nodes- new- validating console output .
-
+ eg :launch slave agent via java web start
+   after complte the details in slave config - will get a jar/link
+   open the jar in same slave which will show the connected msg
 	 -‘Git plugin/ install /restart and check  Source code Management section, you will now see ‘Git’ as an option.
 
 
@@ -240,6 +250,9 @@ delete branch: git branch -D test_branch
 implicite wait /explicit wait/thread.sleep / mention dynamic elements
 ************************************************************************************************************
 Implicite wait
+***************
+would like it to wait for a certain amount of time before throwing an exception that it cannot find the element on the page. We should note that implicit waits will be in place for the entire time the browser is open. This means that any search for elements on the page could take the time the implicit wait is set for.
+
 driver.manage().Timeout.ImplicitlyWait(10,Timeunit.SECOND);
 
 page load time out
@@ -249,6 +262,8 @@ driver.manage().Timeouts()Pageloadtimeout(10,Timeunit.SECONDS);
 Thread.sleep.
 
 explicite wait
+**************
+can set it up to wait for any condition you might like. Usually, you can use some of the prebuilt ExpectedConditions to wait for elements to become clickable, visible, invisible, etc,some elements required more time so we set individually
 
 WebdriverWait wait=new WebdriverWait(driver,10);
 wait.untill(Expectedconditions.ElementTobeClickable(By.xpath("//[@id=1234]"));
@@ -260,6 +275,28 @@ ElementTobeClickable(element)
 ElementTobeSelected
 frametobeavailableandswitchtoit(fid/fname/flocator)
 
+Fluent wait
+*************
+an element which sometime appears in just 1 second and some time it takes minutes to appear. In that case it is better to use fluent wait, as this will try to find element again and again until it find it or until the final timer runs ou
+
+
+Wait wait = new FluentWait(driver)
+ 
+    .withTimeout(30, SECONDS)
+ 
+    .pollingEvery(5, SECONDS)
+ 
+    .ignoring(NoSuchElementException.class);
+ 
+ wait.until(new Function() {
+ 
+    public WebElement apply(WebDriver driver) {
+ 
+    return driver.findElement(By.id("foo"));
+ 
+    }
+ 
+   });
 ************************************************************************************************************
 scenario:
 ************************************************************************************************************
