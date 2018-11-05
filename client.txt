@@ -143,18 +143,19 @@ a feasibility study would be good in earlier stage. if the application is a web 
 steps if build didnt met customer expectation:
 ************************************************************************************************************
 
-1.find the reason. accept mistake and communicate reason.
+1.find the reason and communicate reason.
 2.doing corrective actions. eg: 
-3.finding preventive actions. eg:
+3.finding preventive actions and impliment. eg:
 4.requirement level-find proper methods to get requirements,review requirements,testcases,
   skill level-provide trainings,
+  periodical audits to verify .
 
 ************************************************************************************************************
 handling different environment for diffent tests like qa,uat:
 ************************************************************************************************************
 
 sanity test and regression test performed using selenium.
-in case of selenium, each envirmnet will be different with diffrent servers,
+in case of selenium, each envirmnets were different with diffrent servers,
 so the app url ,username and password ,browser,controller sheet/suit based on test will be different 
 The code remins same but we can customize config part for this. additionally we can have to change email groups,
 db connections,
@@ -256,13 +257,14 @@ would like it to wait for a certain amount of time before throwing an exception 
 driver.manage().Timeout.ImplicitlyWait(10,Timeunit.SECOND);
 
 page load time out
-
+*******************
 driver.manage().Timeouts()Pageloadtimeout(10,Timeunit.SECONDS);
 
 Thread.sleep.
+******************
 
 explicite wait
-**************
+******************
 can set it up to wait for any condition you might like. Usually, you can use some of the prebuilt ExpectedConditions to wait for elements to become clickable, visible, invisible, etc,some elements required more time so we set individually
 
 WebdriverWait wait=new WebdriverWait(driver,10);
