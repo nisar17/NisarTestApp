@@ -12,7 +12,7 @@ I have good skill in both manual and autonation testing.
 
 The previouse project I worked is Riverbed QA engagement TAAS ,Steel head ,it is a wan opti device.
 In this project i used jenkins,testrail,bugzilla and test automation tool GRiTS.
-Jenkins is solely used by QA for scheduling and executing automation. Jenkins jobs are used for executing test cases located in Testrail.
+Jenkins is solely used by QA for Trigger executing automation. Jenkins jobs are used for executing test cases located in Testrail.
 Testrail is used primarily for the reporting aspect of testing, but it also is used for creating and executing manual test cases.
 Here we used to perform FIT and PR tests.
 Fit is performed to ensure the quality of Feature integration test 
@@ -74,7 +74,7 @@ Once the images are matching the test will be pass  other wise the test will be 
 		  Pattern img1 = new Pattern("C:\\Users\\Kaiju\\Downloads\\vallathole1.PNG");
 		  f1.find(img1);
 		  if(f1.hasNext()){
-		  org.sikuli.script.Match m=f1.next();
+		  Match m=f1.next();
 		  System.out.println("verified");
 		  f1.destroy();}
 		  else{
@@ -107,6 +107,8 @@ during crisis member get supports
 but Making decisions can take longer bcause of multiple opinions
 emlpoy sit back and not do anything will demotivate the team
 
+but if situation demands for individual work then i go with it.
+
 ************************************************************************************************************
 explain framework
 ************************************************************************************************************
@@ -130,10 +132,11 @@ things before start automation project. approach to a new autmation project. bes
 The test automation is converting our manual tests into test scripts.
 1. so here we need to consider the project environment, tools and technology we are used in the project supported by the automation tool
 a feasibility study would be good in earlier stage. if the application is a web based app ,then selenium java is a best option.
- if network means opython is best for automation.
+ if network means python is best for automation.
 2. prepare atleast 2 POC proof of concept by considering few parameters like 
-3.  availability of technical support to perform test using the tool.Selenium has more communities online to support.
-	budget and availability of resources within the budget. selenium is open source most cost effective when compare to other available tools.
+3. availability of technical support to perform test using the tool.Selenium has more communities online to support.
+   budget and availability of resources within the budget. selenium is open source most cost effective when compare to other          
+   available tools.
 4.support with reporting tools/ integration with test management tool.  
 5.support with continuouse integration tool. Selenium projects can be integrated with tools like jenkins.
 6.The application should be stable at least for 2,3 modules and manual test should performed before.
@@ -270,12 +273,16 @@ can set it up to wait for any condition you might like. Usually, you can use som
 WebdriverWait wait=new WebdriverWait(driver,10);
 wait.untill(Expectedconditions.ElementTobeClickable(By.xpath("//[@id=1234]"));
 
-visibilityofelement(Webelement);
-visibilityofelementlocated(By.xpath);
-
-ElementTobeClickable(element)
-ElementTobeSelected
 frametobeavailableandswitchtoit(fid/fname/flocator)
+    ExpectedCondition < WebElement > elementToBeClickable(By locator)
+    ExpectedCondition < Boolean > elementToBeSelected(By locator)
+    ExpectedCondition < WebElement > presenceOfElementLocated(By locator)
+    ExpectedCondition < Boolean > titleContains(String title)
+    ExpectedCondition < Boolean > titleIs(String title)
+    ExpectedCondition < Boolean > urlContains(String fraction)
+    ExpectedCondition < Boolean > urlToBe(String url)
+    ExpectedCondition < WebElement > visibilityOfElementLocated(By locator)
+
 
 Fluent wait
 *************
